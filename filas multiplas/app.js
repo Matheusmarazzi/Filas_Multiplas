@@ -15,28 +15,32 @@ var tem_atual= 0;
 
 while(tem_max > tem_atual){
     for(i=0; i<processo.length;i++){
-        if(tem_atual == processo[i].T_entrada){
-            if(processo[i].prioridade == 0){
-                for(j=0; j<processo[i].T_execucao ; j++){
+        if(tem_atual == processo[i].T_entrada && processo[i].prioridade == 0){
+                listar();
+                verificar();
+                processo[i].T_execucao = 0; 
+            }else{
+                $("#tempo").append("<ul class='tem'>"+tem_atual+"</ul>");
+                $("#execucao").append("<ul class='exe'>"+processo[i].nome+"</ul>");
+                tem_atual++;
+            }       
+        }
+    }        
+    tem_atual++;
+
+
+function listar(){
+    for(j=0; j<processo[i].T_execucao ; j++){
                     $("#tempo").append("<ul class='tem'>"+tem_atual+"</ul>");
                     $("#execucao").append("<ul class='exe'>"+processo[i].nome+"</ul>");
                     tem_atual++;
-                    verificar();
-                }processo[i].T_execucao = 0; 
-            }else{
-                
-            }
-        }        
-    }
-    tem_atual++;
-
+                }
 }
 
-
 function verificar(){
-    for (i=0; i < processo.length ; i++) {
-        if (tem_atual == processo[i].T_entrada){
-            fila.push(processo[i]);
+    for (p=0; p < processo.length ; p++) {
+        if (tem_atual == processo[p].T_entrada){
+            fila.push(processo[p]);
             console.log(fila);
 
         }
